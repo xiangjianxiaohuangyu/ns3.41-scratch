@@ -2106,15 +2106,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/gpsr/model/gpsr-rqueue.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/gpsr-helper.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/gpsr/helper/gpsr-helper.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ppo-gpsr-module.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ppo-gpsr.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ppo-gpsr-ptable.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ppo-gpsr-packet.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ppo-gpsr-rqueue.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ppo-gpsr-packet.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ppo-gpsr-ptable.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ppo-gpsr-rqueue.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ppo-gpsr-helper.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/mmgpsr-module.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/mmgpsr-ptable.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/mmgpsr/model/mmgpsr-ptable.h \
@@ -2169,33 +2160,19 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-ptable.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/node-information.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-packet.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rqueue.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rl.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ns3-ai-module.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/memory-pool.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/ns3-ai/model/memory-pool.h \
- /usr/include/x86_64-linux-gnu/sys/shm.h \
- /usr/include/x86_64-linux-gnu/sys/ipc.h \
- /usr/include/x86_64-linux-gnu/bits/ipctypes.h \
- /usr/include/x86_64-linux-gnu/bits/ipc.h \
- /usr/include/x86_64-linux-gnu/bits/ipc-perm.h \
- /usr/include/x86_64-linux-gnu/bits/shm.h \
- /usr/include/x86_64-linux-gnu/bits/shmlba.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_shmid_ds.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_shmid64_ds.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/train-var.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/ns3-ai/model/train-var.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ns3-ai-rl.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/ns3-ai/model/ns3-ai-rl.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ns3-ai-dl.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/ns3-ai/model/ns3-ai-dl.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/global-information.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rqueue.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack-packet.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-packet.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack-ptable.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-ptable.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack-rqueue.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rqueue.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/global-information.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/global-information.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/node-information.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/node-information.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack-helper.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/helper/intelligent-protocol-stack-helper.h

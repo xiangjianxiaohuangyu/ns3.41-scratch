@@ -129,4 +129,26 @@ void WriteToFile_Sim(RoutingProtocols* rp, double avgDelay, double deliveryRatio
                       double avgThroughput, double avgHopCount, double convergenceTime,
                       double flowDelay, uint32_t receivedPackets);
 
+/**
+ * @brief 仿真结束后输出所有源节点的数据包转发路径
+ * @param rp 路由协议类指针
+ * @details 遍历 rp->source_dest_pairs，对每个 (source, dest) 节点对
+ *          从 GlobalInformation 单例中读取该 source 已记录的转发路径，
+ *          打印路径数、去重转发者数、跳数分布，以及若干条样例路径。
+ *          数据来源：intelligent-protocol-stack 在 RouteOutput / Forwarding /
+ *          RouteInput 三个钩子里写入 GlobalInformation。
+ */
+void PrintTransmissionPaths_Sim(RoutingProtocols* rp);
+
+/**
+ * @brief 仅对 IPS 协议源节点单独设置自定义权重；中转/目的节点保持默认 0.25
+ * @param rp 路由协议类指针
+ * @details 在 InstallApplications_Sim 选出 source_dest_pairs 之后调用。
+ *          通过 SetAttribute 写回 m_weight* 成员变量，再调用
+ *          UpdateNeighborWeights() 同步到 m_neighbors (PositionTable)，
+ *          路由决策使用的就是后者。其它非源节点上 m_neighbors 仍保持
+ *          构造函数中固化的 0.25，从而实现"只对源节点生效"的语义。
+ */
+void ApplyIpsWeightsToSourceNodes_Sim(RoutingProtocols* rp);
+
 #endif // ROUTING_PROTOCOL_SIMULATOR_H

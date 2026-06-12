@@ -1,4 +1,8 @@
 #include "routing-protocol-simulator.h"
+#include "ns3/intelligent-protocol-stack.h"  // 提供 ns3::intelligentprotocolstack::GlobalInformation
+#include "ns3/node-list.h"                   // InitRoutingProtocol_Sim 中按 id 取节点
+#include "routing-protocol-comm.h"           // 仿真结束时的 DoUpload_Comm 上报
+#include <set>                               // ApplyIpsWeightsToSourceNodes_Sim 用 std::set 去重源节点
 
 /*生成节点并命名*/
 void CreateNodes_Sim(RoutingProtocols* rp){
@@ -82,7 +86,7 @@ void InstallMobilityModel_GaussMarkovMobilityModel_Sim(RoutingProtocols* rp){
                               StringValue("ns3::NormalRandomVariable[Mean=0.0|Variance=0.02|Bound=0.04]"));
     mobility.SetPositionAllocator(
         "ns3::RandomBoxPositionAllocator",
-        "X", StringValue("ns3::UniformRandomVariable[Min=" + std::to_string(rp->simScopeXMin) + "|Max=" + std::to_string(rp->simScopeXMin) + "]"),
+        "X", StringValue("ns3::UniformRandomVariable[Min=" + std::to_string(rp->simScopeXMin) + "|Max=" + std::to_string(rp->simScopeXMax) + "]"),
         "Y", StringValue("ns3::UniformRandomVariable[Min=" + std::to_string(rp->simScopeYMin) + "|Max=" + std::to_string(rp->simScopeYMax) + "]"),
         "Z", StringValue("ns3::UniformRandomVariable[Min=" + std::to_string(rp->simScopeZMin) + "|Max=" + std::to_string(rp->simScopeZMax) + "]"));
     mobility.Install(rp->nodes);
@@ -116,7 +120,7 @@ void CreateDevices_Sim(RoutingProtocols* rp){
 /*能量模型安装*/
 void InstallEnergyModel_Sim(RoutingProtocols* rp){
     BasicEnergySourceHelper basicSourceHelper;
-    basicSourceHelper.Set ("BasicEnergySourceInitialEnergyJ", DoubleValue (100.0));
+    basicSourceHelper.Set ("BasicEnergySourceInitialEnergyJ", DoubleValue (50.0));
     EnergySourceContainer sources = basicSourceHelper.Install (rp->nodes);
 
     WifiRadioEnergyModelHelper radioEnergyHelper;
@@ -162,7 +166,14 @@ void InstallInternetStack_Sim(RoutingProtocols* rp){
         stack.Install(rp->nodes);
     }else if(rp->algorithm == "intelligent-protocol-stack"){
         std::cout<<"Routing algorithm : IntelligentProtocolStack"<<std::endl;
+        //std::cout<<"IPS weights (only source nodes will use these; others stay at default 0.25):"<<std::endl;
+        // std::cout<<"  w1(distance)="<<rp->weightDistance
+        //          <<" w2(linkTime)="<<rp->weightLinkTime
+        //          <<" w3(relVel)="<<rp->weightRelVelocity
+        //          <<" w4(neighborCount)="<<rp->weightNeighborCount<<std::endl;
         IntelligentProtocolStackHelper route;
+        // 不再在 helper 上调用 route.Set(...)，否则会把所有节点都改成自定义权重。
+        // 仅在 InstallApplications_Sim 之后，对源节点单独设置。
         stack.SetRoutingHelper(route);
         stack.Install(rp->nodes);
     }
@@ -179,8 +190,8 @@ void InstallApplications_Sim(RoutingProtocols* rp){
     UdpEchoServerHelper server1(rp->port);
     ApplicationContainer apps;
     srand(rp->seed);
-    int source;
-    int dest;
+    int source=-1;
+    int dest=-1;
     std::vector<std::pair<int, int>>::iterator it;
     bool exist;
     float start_app;
@@ -227,6 +238,54 @@ void InstallApplications_Sim(RoutingProtocols* rp){
         apps = client.Install(rp->nodes.Get(source));
         apps.Start(Seconds(start_app));
         apps.Stop(Seconds(rp->totalTime - 0.1));
+    }
+
+    intelligentprotocolstack::GlobalInformation::GetInstance().setDstNode(dest);
+    intelligentprotocolstack::GlobalInformation::GetInstance().setSourceNode(source);
+    intelligentprotocolstack::GlobalInformation::GetInstance().setIdentity(source,1);
+
+    // 仅在源节点上应用自定义 IPS 权重；中转/目的节点保持默认 0.25
+    if (rp->algorithm == "intelligent-protocol-stack") {
+        ApplyIpsWeightsToSourceNodes_Sim(rp);
+    }
+}
+
+/*仅对 IPS 源节点设置自定义权重；其它节点保持构造时的默认 0.25*/
+void ApplyIpsWeightsToSourceNodes_Sim(RoutingProtocols* rp){
+    // 收集唯一的源节点 id，避免重复设置
+    std::set<uint32_t> sourceIds;
+    for (const auto& p : rp->source_dest_pairs){
+        sourceIds.insert(static_cast<uint32_t>(p.first));
+    }
+
+    std::cout << "[IPS] Applying custom weights to " << sourceIds.size()
+              << " source node(s): w1=" << rp->weightDistance
+              << " w2=" << rp->weightLinkTime
+              << " w3=" << rp->weightRelVelocity
+              << " w4=" << rp->weightNeighborCount << std::endl;
+
+    for (uint32_t sid : sourceIds){
+        Ptr<Node> node = rp->nodes.Get(sid);
+        Ptr<intelligentprotocolstack::RoutingProtocol> ips =
+            node->GetObject<intelligentprotocolstack::RoutingProtocol>();
+        if (!ips){
+            std::cerr << "[IPS] Warning: source node " << sid
+                      << " has no IPS protocol aggregated; skip." << std::endl;
+            continue;
+        }
+        // SetAttribute 只写 m_weight* 成员；UpdateNeighborWeights() 把
+        // 新值同步到 m_neighbors (PositionTable)，路由决策用的就是它。
+        ips->SetAttribute("WeightDistance",    DoubleValue(rp->weightDistance));
+        ips->SetAttribute("WeightLinkTime",    DoubleValue(rp->weightLinkTime));
+        ips->SetAttribute("WeightRelVelocity", DoubleValue(rp->weightRelVelocity));
+        ips->SetAttribute("WeightNeighborCount", DoubleValue(rp->weightNeighborCount));
+        ips->UpdateNeighborWeights();
+
+        // std::cout << "  - source node " << sid
+        //           << " : w1=" << ips->GetWeightDistance()
+        //           << " w2=" << ips->GetWeightLinkTime()
+        //           << " w3=" << ips->GetWeightRelVelocity()
+        //           << " w4=" << ips->GetWeightNeighborCount() << std::endl;
     }
 }
 
@@ -311,7 +370,48 @@ void RunAndCal_Sim(RoutingProtocols* rp){
 
     monitor->SerializeToXmlFile("fanet-routing-gpsr.xml", true, true);
 
+    if (rp->algorithm == "intelligent-protocol-stack" || rp->algorithm == "ips") {
+        intelligentprotocolstack::GlobalInformation::GetInstance().print_node_identity();
+        intelligentprotocolstack::GlobalInformation::GetInstance().print_path();
+
+        // 把 FlowMonitor 统计的 PDR / 时延写入源节点的 NodeInformation，
+        // 供稍后一次性上传到 Windows 端使用。
+        uint32_t srcId = intelligentprotocolstack::GlobalInformation::GetInstance ().getSourceNode ();
+        if (srcId < NodeList::GetNNodes ())
+        {
+            Ptr<Node> srcNode = NodeList::GetNode (srcId);
+            // 强类型匹配 intelli gentprotocolstack::RoutingProtocol
+            Ptr<intelligentprotocolstack::RoutingProtocol> ips =
+                srcNode->GetObject<intelligentprotocolstack::RoutingProtocol> ();
+            if (ips != nullptr)
+            {
+                intelligentprotocolstack::NodeInformation& ni = ips->GetNodeInformation ();
+                // FlowMonitor 给出 PDR 单位为 %，NodeInformation 约定 0–1
+                ni.SetAvgPdr (deliveryRatio / 100.0);
+                // FlowMonitor 给出平均时延单位为 ms，NodeInformation 约定秒
+                ni.SetAvgDelay (avgDelay / 1000.0);
+            }
+            else
+            {
+                std::cerr << "[RunAndCal] 源节点 " << srcId
+                          << " 上未找到 IPS RoutingProtocol，无法写入 PDR/时延。"
+                          << std::endl;
+            }
+        }
+    }
+
+    // 仿真结束后一次性将最终结果（含 PDR / 时延 / energy_consumption /
+    // control_packets）作为 JSON 上传至 Windows 端，替代原先每 10s
+    // 周期上报一次的做法。
+    if (rp->enableTcp)
+    {
+        //std::cout << "[Upload] 仿真结束，开始一次性上传最终结果到 "<< rp->m_serverIp << ":" << rp->m_serverPort << std::endl;
+        DoUpload_Comm (rp);
+    }
+
     Simulator::Destroy();
+
+
 }
 
 void WriteToFile_Sim(RoutingProtocols* rp, double avgDelay, double deliveryRatio,

@@ -1,0 +1,28 @@
+Invalid command-line argument: --weightDistance=0.0792
+ [Program Options] [General Arguments]
+
+Program Options:
+    --algorithm:        routing algorithm [intelligent-protocol-stack]
+    --mobilityModel:    mobility model [GaussMarkovMobilityModel]
+    --simScopeXMax:     simScopeXMax [1000]
+    --simScopeYMax:     simScopeYMax [1000]
+    --nodeSpeedMin:     nodeSpeedMin [10]
+    --nodeSpeedMax:     nodeSpeedMax [10]
+    --commRange:        commRange [250]
+    --size:             Number of nodes. [50]
+    --seed:             seed value [275]
+    --pathCount:        Number of paths for MPMRGPSR (1-7) [1]
+    --enableMultiRole:  Enable multi-role feature for MPMRGPSR [true]
+    --serverIp:         Ubuntu server IP address for TCP connection [192.168.159.1]
+    --serverPort:       Ubuntu server port for TCP connection [8000]
+    --enableTcp:        Whether to open TCP connection to server (true) or run simulation directly (false) [true]
+
+General Arguments:
+    --PrintGlobals:              Print the list of globals.
+    --PrintGroups:               Print the list of groups.
+    --PrintGroup=[group]:        Print all TypeIds of group.
+    --PrintTypeIds:              Print all TypeIds.
+    --PrintAttributes=[typeid]:  Print all attributes of typeid.
+    --PrintVersion:              Print the ns-3 version.
+    --PrintHelp:                 Print this help message.
+

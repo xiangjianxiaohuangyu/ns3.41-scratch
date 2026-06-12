@@ -144,6 +144,7 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   build/include/ns3/generic-battery-model.h \
   build/include/ns3/generic-phy.h \
   build/include/ns3/geographic-positions.h \
+  build/include/ns3/global-information.h \
   build/include/ns3/global-route-manager-impl.h \
   build/include/ns3/global-route-manager.h \
   build/include/ns3/global-router-interface.h \
@@ -285,7 +286,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   build/include/ns3/map-scheduler.h \
   build/include/ns3/math.h \
   build/include/ns3/matrix-array.h \
-  build/include/ns3/memory-pool.h \
   build/include/ns3/mgt-action-headers.h \
   build/include/ns3/mgt-headers.h \
   build/include/ns3/minstrel-ht-wifi-manager.h \
@@ -318,14 +318,12 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   build/include/ns3/nist-error-rate-model.h \
   build/include/ns3/nix-vector.h \
   build/include/ns3/node-container.h \
+  build/include/ns3/node-information.h \
   build/include/ns3/node-list.h \
   build/include/ns3/node-printer.h \
   build/include/ns3/node.h \
   build/include/ns3/non-inheritance.h \
   build/include/ns3/ns2-mobility-helper.h \
-  build/include/ns3/ns3-ai-dl.h \
-  build/include/ns3/ns3-ai-module.h \
-  build/include/ns3/ns3-ai-rl.h \
   build/include/ns3/nstime.h \
   build/include/ns3/object-base.h \
   build/include/ns3/object-factory.h \
@@ -368,12 +366,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   build/include/ns3/phy-entity.h \
   build/include/ns3/pointer.h \
   build/include/ns3/position-allocator.h \
-  build/include/ns3/ppo-gpsr-helper.h \
-  build/include/ns3/ppo-gpsr-module.h \
-  build/include/ns3/ppo-gpsr-packet.h \
-  build/include/ns3/ppo-gpsr-ptable.h \
-  build/include/ns3/ppo-gpsr-rqueue.h \
-  build/include/ns3/ppo-gpsr.h \
   build/include/ns3/preamble-detection-model.h \
   build/include/ns3/priority-queue-scheduler.h \
   build/include/ns3/probe.h \
@@ -498,7 +490,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   build/include/ns3/traced-callback.h \
   build/include/ns3/traced-value.h \
   build/include/ns3/trailer.h \
-  build/include/ns3/train-var.h \
   build/include/ns3/trickle-timer.h \
   build/include/ns3/tuple.h \
   build/include/ns3/txop.h \
@@ -591,9 +582,9 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   contrib/intelligent-protocol-stack/model/global-information.h \
   contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-packet.h \
   contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-ptable.h \
-  contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rl.h \
   contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rqueue.h \
   contrib/intelligent-protocol-stack/model/intelligent-protocol-stack.h \
+  contrib/intelligent-protocol-stack/model/node-information.h \
   contrib/location-service/model/god.h \
   contrib/location-service/model/location-service.h \
   contrib/mmgpsr/helper/mmgpsr-helper.h \
@@ -603,10 +594,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   contrib/mmgpsr/model/mmgpsr-result.h \
   contrib/mmgpsr/model/mmgpsr-rqueue.h \
   contrib/mmgpsr/model/mmgpsr.h \
-  contrib/ns3-ai/model/memory-pool.h \
-  contrib/ns3-ai/model/ns3-ai-dl.h \
-  contrib/ns3-ai/model/ns3-ai-rl.h \
-  contrib/ns3-ai/model/train-var.h \
   src/antenna/model/angles.h \
   src/antenna/model/antenna-model.h \
   src/antenna/model/phased-array-model.h \
@@ -1921,9 +1908,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
-  /usr/include/x86_64-linux-gnu/bits/ipc-perm.h \
-  /usr/include/x86_64-linux-gnu/bits/ipc.h \
-  /usr/include/x86_64-linux-gnu/bits/ipctypes.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -1946,8 +1930,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
-  /usr/include/x86_64-linux-gnu/bits/shm.h \
-  /usr/include/x86_64-linux-gnu/bits/shmlba.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
   /usr/include/x86_64-linux-gnu/bits/statx.h \
@@ -1991,8 +1973,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_shmid64_ds.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_shmid_ds.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
@@ -2033,9 +2013,7 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
-  /usr/include/x86_64-linux-gnu/sys/ipc.h \
   /usr/include/x86_64-linux-gnu/sys/select.h \
-  /usr/include/x86_64-linux-gnu/sys/shm.h \
   /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/sys/syscall.h \
@@ -2130,8 +2108,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
 
 /usr/include/x86_64-linux-gnu/bits/statx.h:
 
-/usr/include/x86_64-linux-gnu/bits/shmlba.h:
-
 /usr/include/x86_64-linux-gnu/bits/select2.h:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
@@ -2147,8 +2123,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
 /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
-
-/usr/include/x86_64-linux-gnu/bits/ipctypes.h:
 
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
@@ -2223,6 +2197,10 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
 /usr/include/c++/13/system_error:
 
 /usr/include/c++/13/string:
+
+/usr/include/c++/13/tr1/gamma.tcc:
+
+/usr/include/c++/13/streambuf:
 
 /usr/include/c++/13/stdexcept:
 
@@ -2498,8 +2476,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
 
 /usr/include/boost/units/systems/si/electric_charge.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/ipc.h:
-
 /usr/include/boost/units/systems/si/dynamic_viscosity.hpp:
 
 /usr/include/boost/units/systems/si/dimensionless.hpp:
@@ -2709,8 +2685,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
 /usr/include/boost/preprocessor/repetition/enum_params.hpp:
 
 /usr/include/boost/preprocessor/punctuation/is_begin_parens.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/ipc-perm.h:
 
 /usr/include/boost/preprocessor/punctuation/detail/is_begin_parens.hpp:
 
@@ -3098,8 +3072,6 @@ scratch/CMakeFiles/scratch_RoutingProtocol.dir/RoutingProtocol.cc.o: scratch/Rou
 
 /usr/include/boost/config/compiler/gcc.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/shm.h:
-
 /usr/include/boost/config.hpp:
 
 /usr/include/asm-generic/types.h:
@@ -3218,35 +3190,15 @@ src/wifi/model/wifi-ack-manager.h:
 
 src/wifi/model/vht/vht-ppdu.h:
 
-src/wifi/model/vht/vht-operation.h:
+build/include/ns3/wifi-mac-queue.h:
 
-src/wifi/model/vht/vht-frame-exchange-manager.h:
+src/wifi/model/rate-control/ideal-wifi-manager.h:
 
-src/wifi/model/vht/vht-configuration.h:
+/usr/include/c++/13/bits/enable_special_members.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+build/include/ns3/wifi-mac-queue-scheduler.h:
 
-/usr/include/c++/13/climits:
-
-src/wifi/model/vht/vht-capabilities.h:
-
-src/wifi/model/txop.h:
-
-src/wifi/model/threshold-preamble-detection-model.h:
-
-src/wifi/model/table-based-error-rate-model.h:
-
-src/wifi/model/supported-rates.h:
-
-src/wifi/model/status-code.h:
-
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
-
-/usr/include/c++/13/atomic:
-
-src/wifi/model/ssid.h:
-
-src/wifi/model/spectrum-wifi-phy.h:
+build/include/ns3/chunk.h:
 
 build/include/ns3/wifi-mac-helper.h:
 
@@ -3284,8 +3236,6 @@ build/include/ns3/uniform-random-bit-generator.h:
 
 build/include/ns3/udp-socket-factory.h:
 
-build/include/ns3/udp-echo-server.h:
-
 /usr/include/stdio.h:
 
 build/include/ns3/type-traits.h:
@@ -3293,8 +3243,6 @@ build/include/ns3/type-traits.h:
 build/include/ns3/yans-error-rate-model.h:
 
 src/lte/model/lte-rrc-sap.h:
-
-build/include/ns3/train-var.h:
 
 build/include/ns3/trailer.h:
 
@@ -3346,6 +3294,8 @@ src/olsr/helper/olsr-helper.h:
 
 build/include/ns3/tcp-lp.h:
 
+src/wifi/model/vht/vht-operation.h:
+
 build/include/ns3/tcp-hybla.h:
 
 build/include/ns3/rtt-estimator.h:
@@ -3357,10 +3307,6 @@ src/wifi/model/wifi-tx-current-model.h:
 build/include/ns3/type-id.h:
 
 build/include/ns3/tag-buffer.h:
-
-src/internet/model/ndisc-cache.h:
-
-build/include/ns3/olsr-state.h:
 
 /usr/include/boost/units/systems/si/activity.hpp:
 
@@ -3390,6 +3336,10 @@ contrib/gpsr/model/gpsr-packet.h:
 
 build/include/ns3/spectrum-phy.h:
 
+/usr/include/c++/13/version:
+
+build/include/ns3/he-ru.h:
+
 /usr/include/boost/mpl/list/aux_/iterator.hpp:
 
 build/include/ns3/gpsr-module.h:
@@ -3401,12 +3351,6 @@ build/include/ns3/ipv6-interface-container.h:
 src/network/utils/pcap-test.h:
 
 build/include/ns3/network-module.h:
-
-/usr/include/c++/13/tr1/gamma.tcc:
-
-/usr/include/c++/13/streambuf:
-
-build/include/ns3/ppo-gpsr-helper.h:
 
 build/include/ns3/he-ppdu.h:
 
@@ -3500,14 +3444,6 @@ build/include/ns3/data-rate.h:
 
 src/wifi/model/eht/eht-ppdu.h:
 
-build/include/ns3/ppo-gpsr-ptable.h:
-
-build/include/ns3/ppo-gpsr-packet.h:
-
-build/include/ns3/ppo-gpsr-module.h:
-
-src/internet/model/global-router-interface.h:
-
 /usr/include/boost/mpl/list/aux_/front.hpp:
 
 build/include/ns3/position-allocator.h:
@@ -3515,6 +3451,12 @@ build/include/ns3/position-allocator.h:
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
 build/include/ns3/ripng.h:
+
+/usr/include/boost/type_traits/is_lvalue_reference.hpp:
+
+build/include/ns3/wifi-mgt-header.h:
+
+src/internet/model/ipv4.h:
 
 /usr/include/boost/mpl/clear_fwd.hpp:
 
@@ -3554,8 +3496,6 @@ src/wifi/model/he/mu-edca-parameter-set.h:
 
 build/include/ns3/olsr-routing-protocol.h:
 
-build/include/ns3/ppo-gpsr-rqueue.h:
-
 src/mobility/model/hierarchical-mobility-model.h:
 
 build/include/ns3/olsr-repositories.h:
@@ -3582,10 +3522,6 @@ build/include/ns3/object.h:
 
 build/include/ns3/propagation-delay-model.h:
 
-/usr/include/c++/13/bits/locale_facets.tcc:
-
-build/include/ns3/simulator-impl.h:
-
 build/include/ns3/random-waypoint-mobility-model.h:
 
 src/wifi/model/yans-wifi-phy.h:
@@ -3606,13 +3542,25 @@ build/include/ns3/nist-error-rate-model.h:
 
 build/include/ns3/node.h:
 
+build/include/ns3/node-list.h:
+
 build/include/ns3/ipv4-address.h:
 
 /usr/include/c++/13/bits/gslice_array.h:
 
 src/energy/helper/energy-source-container.h:
 
+build/include/ns3/udp-echo-server.h:
+
+build/include/ns3/olsr-state.h:
+
+src/internet/model/ndisc-cache.h:
+
+src/core/model/hash-fnv.h:
+
 build/include/ns3/node-container.h:
+
+build/include/ns3/node-information.h:
 
 build/include/ns3/ipv6-extension-demux.h:
 
@@ -3695,14 +3643,6 @@ build/include/ns3/channel.h:
 build/include/ns3/mmgpsr-Ttable.h:
 
 build/include/ns3/minstrel-wifi-manager.h:
-
-build/include/ns3/node-list.h:
-
-build/include/ns3/memory-pool.h:
-
-src/wifi/model/sta-wifi-mac.h:
-
-src/core/model/simulator-impl.h:
 
 src/wifi/model/block-ack-agreement.h:
 
@@ -3818,6 +3758,8 @@ build/include/ns3/edca-parameter-set.h:
 
 src/core/model/singleton.h:
 
+src/wifi/model/vht/vht-configuration.h:
+
 build/include/ns3/error-model.h:
 
 src/core/model/build-profile.h:
@@ -3829,6 +3771,14 @@ build/include/ns3/error-channel.h:
 src/wifi/model/snr-tag.h:
 
 src/network/model/address.h:
+
+/usr/include/c++/13/concepts:
+
+build/include/ns3/ipv6-routing-protocol.h:
+
+build/include/ns3/rip-helper.h:
+
+build/include/ns3/fcfs-wifi-queue-scheduler.h:
 
 /usr/include/boost/preprocessor/variadic/detail/has_opt.hpp:
 
@@ -3851,12 +3801,6 @@ build/include/ns3/energy-harvester-container.h:
 build/include/ns3/rng-seed-manager.h:
 
 build/include/ns3/ipv4-packet-info-tag.h:
-
-build/include/ns3/chunk.h:
-
-/usr/include/c++/13/bits/enable_special_members.h:
-
-build/include/ns3/wifi-mac-queue-scheduler.h:
 
 /usr/include/c++/13/ext/string_conversions.h:
 
@@ -3910,11 +3854,7 @@ contrib/mmgpsr/model/mmgpsr-ptable.h:
 
 build/include/ns3/mu-snr-tag.h:
 
-/usr/include/x86_64-linux-gnu/sys/shm.h:
-
 build/include/ns3/energy-module.h:
-
-build/include/ns3/ppo-gpsr.h:
 
 /usr/include/c++/13/bits/locale_facets_nonio.tcc:
 
@@ -3931,6 +3871,10 @@ build/include/ns3/uinteger.h:
 build/include/ns3/device-energy-model-container.h:
 
 build/include/ns3/callback.h:
+
+/usr/include/c++/13/bits/locale_facets.tcc:
+
+build/include/ns3/simulator-impl.h:
 
 build/include/ns3/gpsr-rqueue.h:
 
@@ -3986,11 +3930,7 @@ build/include/ns3/tcp-linux-reno.h:
 
 build/include/ns3/rectangle.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_shmid64_ds.h:
-
 build/include/ns3/wifi-radio-energy-model.h:
-
-contrib/ns3-ai/model/ns3-ai-rl.h:
 
 build/include/ns3/constant-rate-wifi-manager.h:
 
@@ -4060,6 +4000,16 @@ build/include/ns3/header.h:
 
 build/include/ns3/ipv4-list-routing.h:
 
+build/include/ns3/wifi-mode.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
+
+src/core/model/list-scheduler.h:
+
+/usr/include/boost/mpl/int.hpp:
+
+src/wifi/model/reduced-neighbor-report.h:
+
 src/internet/model/ipv6-route.h:
 
 build/include/ns3/ctrl-headers.h:
@@ -4075,10 +4025,6 @@ build/include/ns3/box.h:
 src/wifi/model/mgt-action-headers.h:
 
 build/include/ns3/fatal-error.h:
-
-/usr/include/c++/13/version:
-
-build/include/ns3/he-ru.h:
 
 build/include/ns3/simulator.h:
 
@@ -4219,12 +4165,6 @@ src/core/model/fatal-impl.h:
 build/include/ns3/dsss-parameter-set.h:
 
 build/include/ns3/byte-tag-list.h:
-
-contrib/ns3-ai/model/ns3-ai-dl.h:
-
-build/include/ns3/ns3-ai-module.h:
-
-build/include/ns3/ns3-ai-dl.h:
 
 build/include/ns3/arp-cache.h:
 
@@ -4474,14 +4414,6 @@ build/include/ns3/udp-l4-protocol.h:
 
 build/include/ns3/energy-model-helper.h:
 
-build/include/ns3/rip-helper.h:
-
-build/include/ns3/fcfs-wifi-queue-scheduler.h:
-
-/usr/include/c++/13/concepts:
-
-build/include/ns3/ipv6-routing-protocol.h:
-
 build/include/ns3/fd-reader.h:
 
 build/include/ns3/calendar-scheduler.h:
@@ -4521,8 +4453,6 @@ build/include/ns3/uan-phy-gen.h:
 src/core/model/length.h:
 
 build/include/ns3/show-progress.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_shmid_ds.h:
 
 /usr/include/boost/mpl/size_fwd.hpp:
 
@@ -4595,8 +4525,6 @@ build/include/ns3/hash-function.h:
 /usr/include/boost/mpl/aux_/config/adl.hpp:
 
 build/include/ns3/hash.h:
-
-build/include/ns3/ns3-ai-rl.h:
 
 build/include/ns3/packet-burst.h:
 
@@ -4938,26 +4866,6 @@ src/internet/model/ipv6-end-point-demux.h:
 
 src/wifi/model/non-ht/erp-ofdm-phy.h:
 
-build/include/ns3/wifi-mac-queue.h:
-
-src/wifi/model/rate-control/ideal-wifi-manager.h:
-
-/usr/include/boost/type_traits/is_lvalue_reference.hpp:
-
-build/include/ns3/wifi-mgt-header.h:
-
-src/internet/model/ipv4.h:
-
-build/include/ns3/wifi-mode.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio.h:
-
-src/core/model/list-scheduler.h:
-
-/usr/include/boost/mpl/int.hpp:
-
-src/wifi/model/reduced-neighbor-report.h:
-
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
 build/include/ns3/wifi-mpdu.h:
@@ -5064,6 +4972,8 @@ src/wifi/model/eht/eht-frame-exchange-manager.h:
 
 contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-packet.h:
 
+src/stats/model/basic-data-calculators.h:
+
 src/core/model/priority-queue-scheduler.h:
 
 contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rqueue.h:
@@ -5091,12 +5001,6 @@ contrib/mmgpsr/model/mmgpsr-result.h:
 contrib/mmgpsr/model/mmgpsr-rqueue.h:
 
 src/network/utils/generic-phy.h:
-
-src/stats/model/basic-data-calculators.h:
-
-contrib/ns3-ai/model/memory-pool.h:
-
-src/internet/model/tcp-socket-state.h:
 
 /usr/include/c++/13/array:
 
@@ -5170,6 +5074,12 @@ src/wifi/model/rate-control/parf-wifi-manager.h:
 
 src/core/model/default-deleter.h:
 
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/c++/13/atomic:
+
+src/wifi/model/ssid.h:
+
 src/core/model/default-simulator-impl.h:
 
 build/include/ns3/tcp-header.h:
@@ -5201,8 +5111,6 @@ src/core/model/fatal-error.h:
 src/core/model/fd-reader.h:
 
 src/core/model/global-value.h:
-
-src/core/model/hash-fnv.h:
 
 src/core/model/log-macros-disabled.h:
 
@@ -5318,6 +5226,8 @@ src/core/model/system-wall-clock-ms.h:
 
 src/core/model/test.h:
 
+src/wifi/model/threshold-preamble-detection-model.h:
+
 build/include/ns3/map-scheduler.h:
 
 src/core/model/time-printer.h:
@@ -5351,6 +5261,8 @@ src/core/model/type-id.h:
 /usr/include/boost/mpl/aux_/preprocessed/gcc/times.hpp:
 
 src/uan/model/uan-phy-gen.h:
+
+src/wifi/model/spectrum-wifi-phy.h:
 
 /usr/include/boost/units/detail/dimension_list.hpp:
 
@@ -5466,15 +5378,11 @@ src/network/model/channel-list.h:
 
 src/network/utils/inet-socket-address.h:
 
-/usr/include/x86_64-linux-gnu/sys/ipc.h:
-
 src/olsr/model/olsr-repositories.h:
 
 build/include/ns3/wifi-assoc-manager.h:
 
 src/flow-monitor/model/ipv4-flow-classifier.h:
-
-contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rl.h:
 
 src/flow-monitor/model/ipv4-flow-probe.h:
 
@@ -5528,6 +5436,8 @@ src/internet/helper/ripng-helper.h:
 
 src/internet/model/arp-header.h:
 
+build/include/ns3/global-information.h:
+
 src/internet/model/arp-queue-disc-item.h:
 
 build/include/ns3/ipv6-address.h:
@@ -5537,6 +5447,8 @@ src/internet/model/global-route-manager-impl.h:
 /usr/include/boost/config/platform/linux.hpp:
 
 src/netanim/model/animation-interface.h:
+
+src/internet/model/global-router-interface.h:
 
 /usr/include/boost/mpl/aux_/type_wrapper.hpp:
 
@@ -5686,6 +5598,8 @@ src/internet/model/tcp-dctcp.h:
 
 src/network/model/socket-factory.h:
 
+contrib/intelligent-protocol-stack/model/node-information.h:
+
 src/internet/model/tcp-header.h:
 
 src/internet/model/tcp-highspeed.h:
@@ -5762,6 +5676,8 @@ src/internet/helper/rip-helper.h:
 
 src/internet/model/tcp-socket-factory.h:
 
+src/internet/model/tcp-socket-state.h:
+
 src/internet/model/tcp-socket.h:
 
 src/wifi/model/eht/eht-operation.h:
@@ -5783,8 +5699,6 @@ src/internet/model/udp-l4-protocol.h:
 src/lte/model/component-carrier-ue.h:
 
 build/include/ns3/reduced-neighbor-report.h:
-
-contrib/ns3-ai/model/train-var.h:
 
 src/wifi/model/he/multi-user-scheduler.h:
 
@@ -5817,6 +5731,8 @@ src/lte/model/lte-ue-power-control.h:
 build/include/ns3/dsdv-module.h:
 
 src/mobility/helper/group-mobility-helper.h:
+
+src/wifi/model/vht/vht-frame-exchange-manager.h:
 
 src/mobility/helper/mobility-helper.h:
 
@@ -5954,9 +5870,9 @@ src/network/utils/sequence-number.h:
 
 /usr/include/boost/preprocessor/arithmetic/dec.hpp:
 
-src/core/model/des-metrics.h:
-
 src/wifi/helper/wifi-mac-helper.h:
+
+src/core/model/des-metrics.h:
 
 src/network/utils/simple-channel.h:
 
@@ -6106,6 +6022,8 @@ build/include/ns3/onoe-wifi-manager.h:
 
 src/wifi/model/non-ht/dsss-phy.h:
 
+src/wifi/model/status-code.h:
+
 src/wifi/model/frame-exchange-manager.h:
 
 src/wifi/model/non-ht/dsss-ppdu.h:
@@ -6137,3 +6055,19 @@ src/wifi/model/rate-control/onoe-wifi-manager.h:
 src/wifi/model/rate-control/rrpaa-wifi-manager.h:
 
 src/wifi/model/reference/error-rate-tables.h:
+
+src/core/model/simulator-impl.h:
+
+src/wifi/model/sta-wifi-mac.h:
+
+src/wifi/model/supported-rates.h:
+
+src/wifi/model/table-based-error-rate-model.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/c++/13/climits:
+
+src/wifi/model/txop.h:
+
+src/wifi/model/vht/vht-capabilities.h:

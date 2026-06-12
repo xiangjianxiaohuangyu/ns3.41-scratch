@@ -49,7 +49,7 @@
 #include "ns3/intelligent-protocol-stack-module.h"
 
 // 前向声明
-struct CommNodeInfo;
+// （原先的 CommNodeInfo / getNodeInformation 已迁移到 IPS 协议模块）
 
 using namespace ns3;
 
@@ -113,6 +113,8 @@ public:
     friend void WriteToFile_Sim(RoutingProtocols* rp, double avgDelay, double deliveryRatio,
                                 double avgThroughput, double avgHopCount, double convergenceTime,
                                 double flowDelay, uint32_t receivedPackets);
+    friend void PrintTransmissionPaths_Sim(RoutingProtocols* rp);
+    friend void ApplyIpsWeightsToSourceNodes_Sim(RoutingProtocols* rp);
 
     // ============================================
     // 通信模块友元声明
@@ -120,12 +122,12 @@ public:
     friend void CreateTcpConnection_Comm(RoutingProtocols* rp);
     friend void InitSocket_Comm(RoutingProtocols* rp);
     friend void ReportTopology_Comm(RoutingProtocols* rp);
+    friend void DoUpload_Comm(RoutingProtocols* rp);
     friend void UploadLoop_Comm(RoutingProtocols* rp);
-    friend bool SendMessageAndAndAndListen_Comm(RoutingProtocols* rp, const std::string& jsonBody);
-    friend std::vector<CommNodeInfo> getNodeInformation(RoutingProtocols* rp);
-    friend std::string SerializeNodeInfoToJson_Comm(const std::vector<CommNodeInfo>& nodeInfoList, const std::string& taskId);
+    friend bool SendMessageAndAndAndListen_Comm(RoutingProtocols* rp, const std::string& jsonBody, std::string* responseBody);
     friend std::string SerializeSceneParamsToJson_Comm(const std::string& taskId, uint32_t nodeCount, const std::vector<std::pair<int, int>>& commPairs);
     friend void UploadSceneParams_Comm(RoutingProtocols* rp);
+    friend void ApplyNewParametersToSourceNode_Comm(RoutingProtocols* rp, const std::string& responseJson);
 
 private:
     // ============================================
@@ -159,6 +161,15 @@ private:
     bool calConvergeTime;                ///< 是否计算收敛时间
     uint32_t pathCount;                 ///< 路径条数参数（用于MPMGPSR多路径）
     bool enableMultiRole;                ///< 是否启用多角色功能
+    bool enableTcp;                      ///< 是否开启与服务端的TCP连接；false时直接运行仿真
+
+    // ============================================
+    // IPS 路由权重参数
+    // ============================================
+    double weightDistance;              ///< w1: 距离权重
+    double weightLinkTime;              ///< w2: 链路保持时间权重
+    double weightRelVelocity;           ///< w3: 相对速度权重
+    double weightNeighborCount;         ///< w4: 邻居数量权重
 
     // ============================================
     // 结果统计相关

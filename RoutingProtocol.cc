@@ -20,12 +20,12 @@
 #include "ns3/simulator.h"
 
 #include "ns3/gpsr-module.h"
-#include "ns3/ppo-gpsr-module.h"
 #include "ns3/mmgpsr-module.h"
 #include "ns3/dsdv-module.h"
 #include "ns3/aodv-helper.h"
 #include "ns3/olsr-module.h"
 #include "ns3/intelligent-protocol-stack-module.h"
+#include "ns3/node-list.h"                       // InitRoutingProtocol 中按 id 取节点
 
 using namespace ns3;
 
@@ -116,15 +116,15 @@ int main(int argc, char **argv) {
 
 // 构造函数实现：初始化所有成员变量
 RoutingProtocols::RoutingProtocols() :
-    algorithm("ppo-gpsr"), // ppo-gpsr ||intelligent-protocol-stack||gpsr||mmgpsr||aodv||dsdv||olsr||
+    algorithm("ips"), // intelligent-protocol-stack||gpsr||mmgpsr||aodv||dsdv||olsr||
     mobilityModel("GaussMarkovMobilityModel"),//RandomWalk2dMobilityModel||RandomWaypointMobilityModel||GaussMarkovMobilityModel
-    seed(273),
-    size(50),
+    seed(272),
+    size(200),
     step(50),
     simScopeXMin(0.0),
-    simScopeXMax(1000),
+    simScopeXMax(2000),
     simScopeYMin(0.0),
-    simScopeYMax(1000),
+    simScopeYMax(2000),
     simScopeZMin(0.0),
     simScopeZMax(0),
     nodeSpeedMin(10),
@@ -134,7 +134,7 @@ RoutingProtocols::RoutingProtocols() :
     commRange(250),
     gridWidth(50),
     nodesPairs(1),//result统计只支持一对通信节点对,收敛时间同理
-    totalTime(60),
+    totalTime(10),
     port(9),
     packetSizeMax(512),
     maxPacketCount(300),
@@ -165,6 +165,10 @@ bool RoutingProtocols::Configure(int argc, char **argv){
     cmd.AddValue("enableMultiRole", "Enable multi-role feature for MPMRGPSR", enableMultiRole);
 
     cmd.Parse(argc, argv);
+
+    // 把 --seed 同步到 ns-3 全局 RNG：影响 RandomBoxPositionAllocator / 移动模型 / 高斯扰动 等所有 UniformRandomVariable
+    RngSeedManager::SetSeed(seed);
+
     return true;
 }
 
@@ -277,7 +281,7 @@ void RoutingProtocols::InstallMobilityModel_GaussMarkovMobilityModel(){
     // 高斯随机夹角度：用于计算下一个夹角度的高斯随机变量。
     mobility.SetPositionAllocator(
         "ns3::RandomBoxPositionAllocator", // 随机位置分配器
-        "X", StringValue("ns3::UniformRandomVariable[Min=" + std::to_string(simScopeXMin) + "|Max=" + std::to_string(simScopeXMin) + "]"),
+        "X", StringValue("ns3::UniformRandomVariable[Min=" + std::to_string(simScopeXMin) + "|Max=" + std::to_string(simScopeXMax) + "]"),
         "Y", StringValue("ns3::UniformRandomVariable[Min=" + std::to_string(simScopeYMin) + "|Max=" + std::to_string(simScopeYMax) + "]"),
         "Z", StringValue("ns3::UniformRandomVariable[Min=" + std::to_string(simScopeZMin) + "|Max=" + std::to_string(simScopeZMax) + "]"));
     mobility.Install(nodes); // 安装移动模型
@@ -365,14 +369,9 @@ void RoutingProtocols::InstallInternetStack(){
         OlsrHelper route;
         stack.SetRoutingHelper(route);
         stack.Install(nodes);
-    }else if(algorithm == "intelligent-protocol-stack"){
+    }else if(algorithm == "intelligent-protocol-stack" || algorithm == "ips"){
         std::cout<<"Routing algorithm : IntelligentProtocolStack"<<std::endl;
         IntelligentProtocolStackHelper route;
-        stack.SetRoutingHelper(route);
-        stack.Install(nodes);
-    }else if(algorithm == "ppo-gpsr"){
-        std::cout<<"Routing algorithm : PPO-GPSR"<<std::endl;
-        PpoGpsrHelper route;
         stack.SetRoutingHelper(route);
         stack.Install(nodes);
     }
@@ -433,6 +432,10 @@ void RoutingProtocols::InstallApplications(){
         apps.Start(Seconds(start_app));
         apps.Stop(Seconds(totalTime - 0.1));
     }
+
+    intelligentprotocolstack::GlobalInformation::GetInstance().setDstNode(dest);
+    intelligentprotocolstack::GlobalInformation::GetInstance().setSourceNode(source);
+    intelligentprotocolstack::GlobalInformation::GetInstance().setIdentity(source,1);
 }
 
 /*初始化路由协议：仅gpsr需要*/
@@ -443,12 +446,8 @@ void RoutingProtocols::InitRoutingProtocol(){
     }else if(algorithm == "gpsr"){
         GpsrHelper route;
         route.Install();
-    }else if(algorithm == "intelligent-protocol-stack"){
+    }else if(algorithm == "intelligent-protocol-stack" || algorithm == "ips"){
         IntelligentProtocolStackHelper route;
-        route.Install();
-    }else if(algorithm == "ppo-gpsr"){
-        PpoGpsrHelper route;
-        route.Set("MultipathCount", UintegerValue(pathCount));
         route.Install();
     }
 }
@@ -520,6 +519,13 @@ void RoutingProtocols::RunAndCal(){
     writeToFile(avgDelay,deliveryRatio,avgThroughput,avgHopCount,convergenceTime,flow_delay,ReceivedPackets);
 
     monitor->SerializeToXmlFile("fanet-routing-gpsr.xml", true, true);
+
+    // 在 Simulator::Destroy() 之前输出每个 IPS 节点的 ID / IP / 身份，
+    // 否则析构时如果 teardown 出现空指针断言，这里的打印就看不到了。
+    if (algorithm == "intelligent-protocol-stack" || algorithm == "ips") {
+        intelligentprotocolstack::GlobalInformation::GetInstance().print_node_identity();
+        intelligentprotocolstack::GlobalInformation::GetInstance().print_path();
+    }
 
     Simulator::Destroy();
 }

@@ -2174,36 +2174,34 @@ scratch/routing/CMakeFiles/scratch_routing_routing-protocol.dir/routing-protocol
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-ptable.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/node-information.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-packet.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rqueue.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rl.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ns3-ai-module.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/memory-pool.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/ns3-ai/model/memory-pool.h \
- /usr/include/x86_64-linux-gnu/sys/shm.h \
- /usr/include/x86_64-linux-gnu/sys/ipc.h \
- /usr/include/x86_64-linux-gnu/bits/ipctypes.h \
- /usr/include/x86_64-linux-gnu/bits/ipc.h \
- /usr/include/x86_64-linux-gnu/bits/ipc-perm.h \
- /usr/include/x86_64-linux-gnu/bits/shm.h \
- /usr/include/x86_64-linux-gnu/bits/shmlba.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_shmid_ds.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_shmid64_ds.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/train-var.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/ns3-ai/model/train-var.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ns3-ai-rl.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/ns3-ai/model/ns3-ai-rl.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/ns3-ai-dl.h \
- /home/lzp/ns-allinone-3.41/ns-3.41/contrib/ns3-ai/model/ns3-ai-dl.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/global-information.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rqueue.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack-packet.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-packet.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack-ptable.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-ptable.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack-rqueue.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/intelligent-protocol-stack-rqueue.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/global-information.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/global-information.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/node-information.h \
+ /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/model/node-information.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/build/include/ns3/intelligent-protocol-stack-helper.h \
  /home/lzp/ns-allinone-3.41/ns-3.41/contrib/intelligent-protocol-stack/helper/intelligent-protocol-stack-helper.h \
  /usr/include/c++/13/random /usr/include/c++/13/bits/random.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h \
- /usr/include/c++/13/bits/random.tcc
+ /usr/include/c++/13/bits/random.tcc /usr/include/c++/13/regex \
+ /usr/include/c++/13/stack /usr/include/c++/13/bits/stl_stack.h \
+ /usr/include/c++/13/bits/regex_constants.h \
+ /usr/include/c++/13/bits/regex_error.h \
+ /usr/include/c++/13/bits/regex_automaton.h \
+ /usr/include/c++/13/bits/regex_automaton.tcc \
+ /usr/include/c++/13/bits/regex_scanner.h \
+ /usr/include/c++/13/bits/regex_scanner.tcc \
+ /usr/include/c++/13/bits/regex_compiler.h \
+ /usr/include/c++/13/bits/regex_compiler.tcc \
+ /usr/include/c++/13/bits/regex.h /usr/include/c++/13/bits/regex.tcc \
+ /usr/include/c++/13/bits/regex_executor.h \
+ /usr/include/c++/13/bits/regex_executor.tcc
